@@ -6,35 +6,76 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
+    <link rel='shortcut icon' type='image/x-icon' href='https://www.facebook.com/rsrc.php/yl/r/H3nktOa7ZMg.ico'/>
     <title>IoT Device Configurator</title>
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300" rel="stylesheet" />
 
     <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
     <!-- Bootstrap v3 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        var logger = "http://localhost:8000";
+        var id = null;
+
+        function log(action) {
+            action.HIT_ID = id;
+            $.post(logger, JSON.stringify(action));
+//            $.ajax({
+//                type: 'POST',
+//                url: '/',
+//                data: JSON.stringify(action),
+////                data: '{"name":"jonas"}', // or JSON.stringify ({name: 'jonas'}),
+//                success: function(data) { alert('data: ' + data); },
+//                contentType: "application/json",
+//                dataType: 'json'
+//            });
+        }
+
+        $(document).ready(function () {
+            $('#initializer').click(function (event) {
+                event.preventDefault();
+                id = $('#id').val();
+                $('#splash').hide();
+                log({action: "INITIALIZE"});
+            });
+        });
+    </script>
 
 </head>
 
 
 <body style="">
 
-<div style="position: fixed; top: 35%; width: 100%; text-align: center;" id="auth">
+<div style="position: fixed; top: 35%; width: 100%; text-align: center;" id="splash">
     <h2>IoT Authentication Simulator</h2>
-    <h4>Enter your HIT worker ID:</h4>
+    <!--<h4>Enter your HIT worker ID:</h4>-->
+
+    <div class="container">
+        <div class="row">
+            <form>
+                <div class="form-group">
+                    <label for="id">Enter your HIT worker ID:</label>
+                    <input class="form-control" id="id" />
+                </div>
+                <button class="btn btn-default" id="initializer">Submit</button>
+            </form>
+        </div>
+    </div>
 
 
 </div>
 
 
 <!--<div class="text-center page-header" id="splash">-->
-    <!--<h2>My Facebook Privacy Dashboard</h2>-->
+<!--<h2>My Facebook Privacy Dashboard</h2>-->
 <!--</div>-->
 
 

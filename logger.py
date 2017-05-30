@@ -17,6 +17,8 @@ from http import HTTPStatus as HTTP
 
 
 def process_POST(data):
+    print("here")
+    print(data)
     if 'HIT_ID' not in data or 'action' not in data:
         return
 
@@ -30,10 +32,6 @@ class InstrumentationHandler(SimpleHTTPRequestHandler):
         self.send_response(HTTP.OK)
         self.send_header("Content-type", "text/html")
         self.end_headers()
-
-    def do_GET(self):
-        print(self.path)
-        self.respond()
 
     def do_POST(self):
         self.respond()
