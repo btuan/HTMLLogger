@@ -17,8 +17,6 @@ from http import HTTPStatus as HTTP
 
 
 def process_POST(data):
-    print("here")
-    print(data)
     if 'HIT_ID' not in data or 'action' not in data:
         return
 
@@ -49,7 +47,3 @@ def run(verbose):
 
 if __name__ == '__main__':
     run()
-
-
-
-

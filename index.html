@@ -28,23 +28,25 @@
         function log(action) {
             action.HIT_ID = id;
             $.post(logger, JSON.stringify(action));
-//            $.ajax({
-//                type: 'POST',
-//                url: '/',
-//                data: JSON.stringify(action),
-////                data: '{"name":"jonas"}', // or JSON.stringify ({name: 'jonas'}),
-//                success: function(data) { alert('data: ' + data); },
-//                contentType: "application/json",
-//                dataType: 'json'
-//            });
         }
 
         $(document).ready(function () {
             $('#initializer').click(function (event) {
                 event.preventDefault();
                 id = $('#id').val();
-                $('#splash').hide();
-                log({action: "INITIALIZE"});
+
+                if (id === "") {
+                    $('#nonempty').show();
+                }
+                else{
+                    $('#splash').hide();
+                    log({action: "INITIALIZE"});
+                    $('#configurator').show();
+                }
+            });
+            $('.listened').click(function (event) {
+                event.preventDefault();
+                log({action: event.currentTarget.name});
             });
         });
     </script>
@@ -64,19 +66,34 @@
                 <div class="form-group">
                     <label for="id">Enter your HIT worker ID:</label>
                     <input class="form-control" id="id" />
+                    <span class="text-danger" id="nonempty" style="display: none">HIT worker ID field cannot be empty.</span>
                 </div>
-                <button class="btn btn-default" id="initializer">Submit</button>
+                <button class="btn btn-default" id="initializer" name="INITIALIZE">Submit</button>
             </form>
         </div>
     </div>
 
-
 </div>
 
 
-<!--<div class="text-center page-header" id="splash">-->
-<!--<h2>My Facebook Privacy Dashboard</h2>-->
-<!--</div>-->
+<div class="text-center page-header" id="configurator" style="display: none;">
+    <h2>IoT Authentication Simulator</h2>
+    <ol style="visibility:hidden;"></ol>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Privacy Level</h4>
+            </div>
+            <div class="col-sm-6">
+                <div class="btn-group">
+                    <button class="btn btn-info listened" data-toggle="button" aria-pressed="false" name="CLICKED - PrivHigh">High</button>
+                    <button class="btn btn-info listened" data-toggle="button" aria-pressed="false" name="CLICKED - PrivMed">Medium</button>
+                    <button class="btn btn-info listened" data-toggle="button" aria-pressed="false" name="CLICKED - PrivLow">Low</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 </body>
