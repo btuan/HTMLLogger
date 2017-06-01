@@ -46,7 +46,7 @@
             });
             $('.listened').click(function (event) {
                 event.preventDefault();
-                log({action: event.currentTarget.name});
+                log({action: event.currentTarget.id});
             });
         });
     </script>
@@ -68,7 +68,7 @@
                     <input class="form-control" id="id" />
                     <span class="text-danger" id="nonempty" style="display: none">HIT worker ID field cannot be empty.</span>
                 </div>
-                <button class="btn btn-default" id="initializer" name="INITIALIZE">Submit</button>
+                <button class="btn btn-default" id="initializer">Submit</button>
             </form>
         </div>
     </div>
@@ -79,6 +79,8 @@
 <div class="text-center page-header" id="configurator" style="display: none;">
     <h2>IoT Authentication Simulator</h2>
     <ol style="visibility:hidden;"></ol>
+    <ol style="visibility:hidden;"></ol>
+    <ol style="visibility:hidden;"></ol>
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
@@ -86,12 +88,31 @@
             </div>
             <div class="col-sm-6">
                 <div class="btn-group">
-                    <button class="btn btn-info listened" data-toggle="button" aria-pressed="false" name="CLICKED - PrivHigh">High</button>
-                    <button class="btn btn-info listened" data-toggle="button" aria-pressed="false" name="CLICKED - PrivMed">Medium</button>
-                    <button class="btn btn-info listened" data-toggle="button" aria-pressed="false" name="CLICKED - PrivLow">Low</button>
+                    <button class="btn btn-info listened" data-toggle="button" aria-pressed="false" id="CLICKED - PrivHigh">High</button>
+                    <button class="btn btn-info listened" data-toggle="button" aria-pressed="false" id="CLICKED - PrivMed">Medium</button>
+                    <button class="btn btn-info listened" data-toggle="button" aria-pressed="false" id="CLICKED - PrivLow">Low</button>
                 </div>
             </div>
         </div>
+        <button class="btn btn-default listened" id="Save Changes">Save Changes</button>
+        <!--<div class="row">-->
+            <!--<div class="col-sm-6">-->
+                <!--<h4>Radio Buttons</h4>-->
+            <!--</div>-->
+            <!--<div class="col-sm-6">-->
+                <!--<div class="btn-group" data-toggle="buttons">-->
+                    <!--<label class="btn btn-primary active">-->
+                        <!--<input type="radio" class="listened" name="options" id="option1" checked> Radio 1 (preselected)-->
+                    <!--</label>-->
+                    <!--<label class="btn btn-primary">-->
+                        <!--<input type="radio" class="listened" name="options" id="option2"> Radio 2-->
+                    <!--</label>-->
+                    <!--<label class="btn btn-primary">-->
+                        <!--<input type="radio" class="listened" name="options" id="option3"> Radio 3-->
+                    <!--</label>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </div>
 
